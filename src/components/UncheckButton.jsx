@@ -2,7 +2,7 @@ import React from 'react';
 
 function UncheckButton({ handleClick }) {
     return (
-        <button onClick={handleClick}>Uncheck All</button>
+        <button className='uncheck' onClick={handleClick}>Uncheck All</button>
     )
 }
 

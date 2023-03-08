@@ -1,5 +1,6 @@
 .weapon {
     cursor: pointer;
+    text-align: center;
 }
 
 .weapon:hover {
