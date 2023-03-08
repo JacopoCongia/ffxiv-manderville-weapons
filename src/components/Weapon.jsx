@@ -1,7 +1,7 @@
 import React from 'react';
 import './Weapon.css'
 
-function Weapon({ id, weaponName, icon, isSelected, selectWeapon }) {
+function Weapon({ id, weaponName, icon, isSelected, selectWeapon}) {
     const styles = {
         opacity: isSelected ? "25%" : "100%"
     }
