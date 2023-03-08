@@ -1,0 +1,21 @@
+.weapon {
+    cursor: pointer;
+}
+
+.weapon:hover {
+    opacity: 85%;
+}
+
+.weapon--icon {
+    width: 80px;
+}
+
+.astronomy-icon {
+    height: 20px;
+    margin-right: 10px;
+}
+
+.manderium-meteorite-icon {
+    height: 20px;
+    margin-right: 10px;
+}
