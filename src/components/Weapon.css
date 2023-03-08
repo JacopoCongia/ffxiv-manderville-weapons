@@ -3,7 +3,7 @@
 }
 
 .weapon:hover {
-    opacity: 85%;
+    color: lightgrey;
 }
 
 .weapon--icon {
