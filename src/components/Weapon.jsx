@@ -7,17 +7,20 @@ function Weapon({ id, jobName, weaponName, icon, isSelected, selectWeapon}) {
     }
     
     return (
-        <div 
-            onClick={selectWeapon} 
-            style={styles} 
-            className='weapon' 
-            id={id}>
-            <img 
-                className="weapon--icon" 
-                alt={weaponName} 
-                src={icon} /> 
-            {jobName}
-        </div>
+            <div className='tooltip'>
+                <span className='tooltiptext'>{weaponName}</span>
+                <div 
+                    onClick={selectWeapon} 
+                    style={styles} 
+                    className='weapon' 
+                    id={id}>
+                    <img 
+                        className="weapon--icon" 
+                        alt={weaponName} 
+                        src={icon} /> 
+                    {jobName}
+                </div>
+            </div>
     )
 };
 
