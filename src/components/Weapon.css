@@ -9,6 +9,7 @@
 
 .weapon--icon {
     width: 80px;
+    height: 80px;
 }
 
 .astronomy-icon {
@@ -20,6 +21,8 @@
     height: 20px;
     margin-right: 10px;
 }
+
+/* Tooltip functionality showing each weapon's name */
 
 .tooltip {
     position: relative;
