@@ -1,8 +1,9 @@
 import React from 'react';
+import './UncheckButton.css'
 
 function UncheckButton({ handleClick }) {
     return (
-        <button className='uncheck' onClick={handleClick}>Uncheck All</button>
+        <button className='uncheck-all' onClick={handleClick}>Uncheck All</button>
     )
 }
 

@@ -1,0 +1,11 @@
+.check-all {
+    width: 200px;
+    height: 40px;
+    background-color: #009468;;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}

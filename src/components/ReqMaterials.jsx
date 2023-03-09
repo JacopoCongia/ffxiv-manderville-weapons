@@ -11,7 +11,7 @@ function ReqMaterials(props) {
             />
             Allagan Tomestones of Astronomy: {props.materials / 3 * 1500}
             </p>
-            <p className='materials'>
+            <p className='primary-materials'>
                 <img 
                     className='material-icon'
                     alt={props.materialName}

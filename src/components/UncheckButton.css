@@ -1,0 +1,11 @@
+.uncheck-all {
+    width: 200px;
+    height: 40px;
+    background-color: #bb4e46;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}

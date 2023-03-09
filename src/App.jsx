@@ -91,21 +91,27 @@ function App() {
     <div className='main'>
       <Header />
         <div className='content-container'>
-          <h4>Manderville Weapons <span className='smaller-green'>iLvl 615 (Patch 6.25)</span></h4>
-          <div className='wpn-elements-container'>
+          <h4>Manderville Weapons<span className='smaller-green'>iLvl 615 (Patch 6.25)</span></h4>
+          <div className='weapon-elements'>
             {weaponElements}
           </div>
-          <ReqMaterials materials={materials.meteorites} materialName='Manderium Meteorites' icon='/icons/Manderium_Meteorite_Icon.png' />
+          <ReqMaterials 
+            materials={materials.meteorites} 
+            materialName='Manderium Meteorites' 
+            icon='/icons/Manderium_Meteorite_Icon.png' />
           <CheckButton handleClick={() => checkAll('weapons')}/>
           <UncheckButton handleClick={() => setWeapons(data[0])}/>
         </div>
         
         <div className='content-container'>
-          <h4>Amazing Manderville Weapons <span className='smaller-green'>iLvl 630 (Patch 6.35)</span></h4>
-          <div className='wpn-elements-container'>
+          <h4>Amazing Manderville Weapons<span className='smaller-green'>iLvl 630 (Patch 6.35)</span></h4>
+          <div className='weapon-elements'>
             {amazingWeaponElements}
           </div>
-          <ReqMaterials materials={materials.chondrites} materialName='Complementary Chondrites' icon='/icons/Complementary_Chondrite_Icon.png' />
+          <ReqMaterials 
+            materials={materials.chondrites} 
+            materialName='Complementary Chondrites' 
+            icon='/icons/Complementary_Chondrite_Icon.png' />
           <CheckButton handleClick={() => checkAll('amazingWeapons')}/>
           <UncheckButton handleClick={() => setAmazingWeapons(data[1])}/>
         </div>
