@@ -71,7 +71,20 @@ function App() {
     useEffect(() => {
       localStorage.setItem('mandervilleWeapons', JSON.stringify(weapons))
       localStorage.setItem('amazingMandervilleWeapons', JSON.stringify(amazingWeapons))
-
+      const weaponsTruths = weapons.filter((obj) => obj.wpnName === 'Manderville Kite Shield' ? null : !obj.isSelected);
+      setMaterials(prevMaterials => {
+          return {
+          ...prevMaterials,
+          meteorites: (weaponsTruths.length) * 3
+        } 
+      })
+      const amazingWeaponsTruths = amazingWeapons.filter((obj) => obj.wpnName === 'Amazing Manderville Kite Shield' ? null : !obj.isSelected);
+      setMaterials(prevMaterials => {
+          return {
+          ...prevMaterials,
+          chondrites: (amazingWeaponsTruths.length) * 3
+        } 
+      })
     }, [weapons, amazingWeapons])
 
   return (
