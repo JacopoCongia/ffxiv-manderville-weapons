@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import data from './data';
 import Header from './components/Header';
 import Weapon from './components/Weapon';
-import ReqMaterials from './components/ReqMaterials';
-import CheckButton from './components/CheckButton';
-import UncheckButton from './components/UncheckButton';
+import WeaponsContainer from './components/WeaponsContainer';
+
 
 function App() {
   const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('mandervilleWeapons')) || data[0]);
   const [amazingWeapons, setAmazingWeapons] = useState(JSON.parse(localStorage.getItem('amazingMandervilleWeapons')) || data[1]);
   const [materials, setMaterials] = useState({meteorites: 57, chondrites: 57})
-  const [visibility, setVisibility] = useState({weapons: true, amazingWeapons: true})
+  const [visibility, setVisibility] = useState(JSON.parse(localStorage.getItem('sectionVisibility')) || {weapons: true, amazingWeapons: true})
   
   const weaponsTruths = weapons.filter((obj) => obj.wpnName === 'Manderville Kite Shield' ? null : !obj.isSelected);
   const amazingWeaponsTruths = amazingWeapons.filter((obj) => obj.wpnName === 'Amazing Manderville Kite Shield' ? null : !obj.isSelected);
@@ -60,9 +61,8 @@ function App() {
         amazingWeapons: !visibility.amazingWeapons
       }))
     }
-    console.log(visibility)
   }
-
+  
   const weaponElements = weapons.map(item => (
     <Weapon 
       key={item.id}
@@ -90,6 +90,8 @@ function App() {
     useEffect(() => {
       localStorage.setItem('mandervilleWeapons', JSON.stringify(weapons))
       localStorage.setItem('amazingMandervilleWeapons', JSON.stringify(amazingWeapons))
+      localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
+
       setMaterials(prevMaterials => {
           return {
           ...prevMaterials,
@@ -102,47 +104,47 @@ function App() {
           chondrites: (amazingWeaponsTruths.length) * 3
         } 
       })
-    }, [weapons, amazingWeapons])
+    }, [weapons, amazingWeapons, visibility])
 
   return (
     <div className='main'>
       <Header />
-        <div className='weapons-header'>
+        <div id='weapons' className='weapons-header' onClick={(e) => handleVisibility(e.target.id)}>
           <p className='weapons-header--completed'>{19 - weaponsTruths.length}/19</p>  
           <h4>Manderville Weapons<span className='smaller-green'>iLvl 615 (Patch 6.25)</span></h4>
-          <p id='weapons' className='weapons-header--collapse' onClick={(e) => handleVisibility(e.target.id)}>Show/Hide</p>
+          {!visibility.weapons ? <ExpandMoreIcon sx={{fontSize: '40px'}} /> : <ExpandLessIcon sx={{fontSize: '40px'}} />}
         </div>
         { visibility.weapons && 
-          <div className='content-container'>
-            <div className='weapon-elements'>
-              {weaponElements}
-            </div>
-            <ReqMaterials 
-              materials={materials.meteorites} 
-              materialName='Manderium Meteorites' 
-              icon='/icons/Manderium_Meteorite_Icon.png' />
-            <CheckButton handleClick={() => checkAll('weapons')}/>
-            <UncheckButton handleClick={() => setWeapons(data[0])}/>
-          </div>
+          <WeaponsContainer 
+            weapons={weapons} 
+            selectWeapon={selectWeapon} 
+            weaponType='weapon' 
+            materials={materials.meteorites}
+            materialName='Manderium Meteorites'
+            icon='/icons/Manderium_Meteorite_Icon.png'
+            checkAll={() => checkAll('weapons')}
+            uncheckAll={() => setWeapons(data[0])}
+            weaponElements={weaponElements}
+          />
         }
         
-        <div className='weapons-header'>
+        <div id='amazingWeapons' className='weapons-header' onClick={(e) => handleVisibility(e.target.id)}>
           <p className='weapons-header--completed'>{19 - amazingWeaponsTruths.length}/19</p>
           <h4>Amazing Manderville Weapons<span className='smaller-green'>iLvl 630 (Patch 6.35)</span></h4>
-          <p id='amazingWeapons' className='weapons-header--collapse' onClick={(e) => handleVisibility(e.target.id)}>Show/Hide</p>
+          {!visibility.amazingWeapons ? <ExpandMoreIcon sx={{fontSize: '40px'}} /> : <ExpandLessIcon sx={{fontSize: '40px'}} />}
         </div>
         { visibility.amazingWeapons && 
-          <div className='content-container'>
-            <div className='weapon-elements'>
-              {amazingWeaponElements}
-            </div>
-            <ReqMaterials 
-              materials={materials.chondrites} 
-              materialName='Complementary Chondrites' 
-              icon='/icons/Complementary_Chondrite_Icon.png' />
-            <CheckButton handleClick={() => checkAll('amazingWeapons')}/>
-            <UncheckButton handleClick={() => setAmazingWeapons(data[1])}/>
-          </div>
+          <WeaponsContainer 
+            weapons={amazingWeapons} 
+            selectWeapon={selectWeapon} 
+            weaponType='amazingWeapon' 
+            materials={materials.chondrites}
+            materialName='Complementary Chondrites'
+            icon='/icons/Complementary_Chondrite_Icon.png'
+            checkAll={() => checkAll('amazingWeapons')}
+            uncheckAll={() => setAmazingWeapons(data[1])}
+            weaponElements={amazingWeaponElements}
+          />
           }
       </div>
   )

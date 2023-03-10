@@ -40,6 +40,19 @@ h1, h2, h3, h4, h5, h6, p {
     background-color: #004483;
     box-shadow: 0px 3px 8px #0000001a;
     border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.weapons-header:hover {
+    opacity: 85%;
+}
+
+.weapons-header > h4 {
+    margin-right: auto;
+}
+
+.ExpandMoreIcon-root {
+    color: red;
 }
 
 .weapons-header--completed {
@@ -47,19 +60,6 @@ h1, h2, h3, h4, h5, h6, p {
     letter-spacing: .1rem;
     font-weight: 600;
     margin-right: auto;
-}
-
-.weapons-header--collapse {
-    font-size: 2rem;
-    margin-left: auto;
-    cursor: pointer;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
-}
-
-.weapons-header--collapse:hover {
-    opacity: 85%;
 }
 
 .content-container {
