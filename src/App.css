@@ -3,6 +3,10 @@
     font-family: Inter, sans-serif;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 body {
     margin: 0;
     background-color: #272727;
@@ -15,7 +19,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .smaller-green {
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #00ff88;
     display: block;
     margin-top: 5px;
@@ -25,6 +29,39 @@ h1, h2, h3, h4, h5, h6, p {
     max-width: auto;
 }
 
+.weapons-header {
+    display: flex;
+    padding: 15px 25px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 500;
+    background-color: #004483;
+    box-shadow: 0px 3px 8px #0000001a;
+    border-bottom: 1px solid black;
+}
+
+.weapons-header--completed {
+    font-size: 2rem;
+    letter-spacing: .1rem;
+    font-weight: 600;
+    margin-right: auto;
+}
+
+.weapons-header--collapse {
+    font-size: 2rem;
+    margin-left: auto;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.weapons-header--collapse:hover {
+    opacity: 85%;
+}
+
 .content-container {
     display: flex;
     width: 100%;
@@ -32,30 +69,23 @@ h1, h2, h3, h4, h5, h6, p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: auto;
     margin-bottom: 25px;
-    box-shadow: 0px 2.98256px 7.4564px #0000001a;
     padding: 35px;
     text-align: center;
 }
 
-.content-container > h4 {
-    font-size: 28px;
-    font-weight: 500;
-    margin-bottom: 25px;
-}
 
 .weapon-elements {
     display: grid;
     grid-template: auto auto / repeat(4, 50px);
     justify-items: center;
     gap: 20px 50px;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .materials-container {
     margin-top: 35px;
-    font-size: 18px;
+    font-size: 1.8rem;
     margin-bottom: 20px;
 }
 

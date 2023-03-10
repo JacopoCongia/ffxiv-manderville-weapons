@@ -1,10 +1,10 @@
 header {
     display: flex;
-    height: 130px;
+    padding: 25px 0;
     background-color: #009468;
     color: white;
-    font-size: 22px;
-    box-shadow: 0px 2.98256px 7.4564px #0000001a;
+    font-size: 2rem;
+    box-shadow: 0px 3px 8px #0000001a;
     justify-content: center;
     align-items: center;
 }
