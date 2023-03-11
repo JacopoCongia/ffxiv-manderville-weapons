@@ -9,6 +9,7 @@ import WeaponsContainer from './components/WeaponsContainer';
 
 
 function App() {
+  // const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('mandervilleWeapons')) || data[0]);
   const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('mandervilleWeapons')) || data[0]);
   const [amazingWeapons, setAmazingWeapons] = useState(JSON.parse(localStorage.getItem('amazingMandervilleWeapons')) || data[1]);
   const [materials, setMaterials] = useState({meteorites: 57, chondrites: 57})
@@ -49,18 +50,11 @@ function App() {
     }
   }
 
-  function handleVisibility(event) {
-    if (event === 'weapons') {
-      setVisibility(prevVisibility => ({
+  function handleVisibility(key, value) {
+    setVisibility(prevVisibility => ({
         ...prevVisibility,
-        weapons: !visibility.weapons
+        [key]: !value
       }))
-    } else if (event === 'amazingWeapons') {
-      setVisibility(prevVisibility => ({
-        ...prevVisibility,
-        amazingWeapons: !visibility.amazingWeapons
-      }))
-    }
   }
   
   const weaponElements = weapons.map(item => (
@@ -109,7 +103,7 @@ function App() {
   return (
     <div className='main'>
       <Header />
-        <div id='weapons' className='weapons-header' onClick={(e) => handleVisibility(e.target.id)}>
+        <div  className='weapons-header' onClick={() => handleVisibility('weapons', visibility.weapons)}>
           <p className='weapons-header--completed'>{19 - weaponsTruths.length}/19</p>  
           <h4>Manderville Weapons<span className='smaller-green'>iLvl 615 (Patch 6.25)</span></h4>
           {!visibility.weapons ? <ExpandMoreIcon sx={{fontSize: '40px'}} /> : <ExpandLessIcon sx={{fontSize: '40px'}} />}
@@ -128,7 +122,7 @@ function App() {
           />
         }
         
-        <div id='amazingWeapons' className='weapons-header' onClick={(e) => handleVisibility(e.target.id)}>
+        <div className='weapons-header' onClick={() => handleVisibility('amazingWeapons', visibility.amazingWeapons)}>
           <p className='weapons-header--completed'>{19 - amazingWeaponsTruths.length}/19</p>
           <h4>Amazing Manderville Weapons<span className='smaller-green'>iLvl 630 (Patch 6.35)</span></h4>
           {!visibility.amazingWeapons ? <ExpandMoreIcon sx={{fontSize: '40px'}} /> : <ExpandLessIcon sx={{fontSize: '40px'}} />}

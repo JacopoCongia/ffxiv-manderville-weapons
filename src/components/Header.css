@@ -8,3 +8,16 @@ header {
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width: 480px) {
+    header {
+        display: flex;
+        padding: 25px 0;
+        background-color: #009468;
+        color: white;
+        font-size: 2.5vw;
+        box-shadow: 0px 3px 8px #0000001a;
+        justify-content: center;
+        align-items: center;
+    }
+}

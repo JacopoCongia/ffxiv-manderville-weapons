@@ -66,7 +66,6 @@ h1, h2, h3, h4, h5, h6, p {
     margin-bottom: 25px;
     padding: 35px;
     text-align: center;
-
 }
 
 .weapon-elements {
@@ -78,10 +77,29 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 0 25px;
 }
 
+@media (max-width: 480px) {
+    .weapon-elements {
+        display: grid;
+        grid-template: auto auto / repeat(3, 80px);
+        justify-items: center;
+        gap: 20px 30px;
+        font-size: 1.4rem;
+        padding: 0 25px;
+    }
+}
+
 .materials-container {
     margin-top: 35px;
     font-size: 1.8rem;
     margin-bottom: 20px;
+}
+
+@media (max-width: 480) {
+    .materials-container {
+        margin-top: 35px;
+        font-size: 2.6vw;
+        margin-bottom: 20px;
+    }
 }
 
 .materials-container > p {
