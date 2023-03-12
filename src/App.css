@@ -39,16 +39,21 @@ h1, h2, h3, h4, h5, h6, p {
     cursor: pointer;
 }
 
+@media (max-width: 480px) {
+    .weapons-header {
+    font-size: 3.6vw;
+    }
+    .smaller-green {
+       font-size: 2.4vw
+    }
+}
+
 .weapons-header:hover {
     opacity: 85%;
 }
 
 .weapons-header > h4 {
     margin-right: auto;
-}
-
-.ExpandMoreIcon-root {
-    color: red;
 }
 
 .weapons-header--completed {
@@ -70,21 +75,22 @@ h1, h2, h3, h4, h5, h6, p {
 
 .weapon-elements {
     display: grid;
-    grid-template: auto auto / repeat(4, 80px);
+    grid-template: auto auto / repeat(5, 80px);
     justify-items: center;
     gap: 20px 30px;
     font-size: 1.4rem;
     padding: 0 25px;
 }
 
+@media (max-width: 600px) {
+    .weapon-elements {
+        grid-template: auto auto / repeat(4, 80px);
+    }
+}
+
 @media (max-width: 480px) {
     .weapon-elements {
-        display: grid;
         grid-template: auto auto / repeat(3, 80px);
-        justify-items: center;
-        gap: 20px 30px;
-        font-size: 1.4rem;
-        padding: 0 25px;
     }
 }
 
@@ -96,9 +102,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 @media (max-width: 480) {
     .materials-container {
-        margin-top: 35px;
         font-size: 2.6vw;
-        margin-bottom: 20px;
     }
 }
 
@@ -108,13 +112,16 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .astronomy-icon {
-    height: 20px;
+    max-width: 20px;
+    width: 100%;
     margin-right: 10px;
 }
 
 .material-icon {
-    height: 20px;
+    max-width: 20px;
+    width: 100%;
     margin-right: 10px;
+
 }
 
 .astronomy {

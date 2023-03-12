@@ -7,9 +7,7 @@ import Header from './components/Header';
 import Weapon from './components/Weapon';
 import WeaponsContainer from './components/WeaponsContainer';
 
-
 function App() {
-  // const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('mandervilleWeapons')) || data[0]);
   const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('mandervilleWeapons')) || data[0]);
   const [amazingWeapons, setAmazingWeapons] = useState(JSON.parse(localStorage.getItem('amazingMandervilleWeapons')) || data[1]);
   const [materials, setMaterials] = useState({meteorites: 57, chondrites: 57})
@@ -18,7 +16,7 @@ function App() {
   const weaponsTruths = weapons.filter((obj) => obj.wpnName === 'Manderville Kite Shield' ? null : !obj.isSelected);
   const amazingWeaponsTruths = amazingWeapons.filter((obj) => obj.wpnName === 'Amazing Manderville Kite Shield' ? null : !obj.isSelected);
 
-  const selectWeapon = (id, type) => {
+  function selectWeapon(id, type) {
     if (type === 'weapon') {
       setWeapons(oldWeapons => oldWeapons.map(weapon => {
         return weapon.id === id ?
@@ -32,7 +30,7 @@ function App() {
           weapon
       }))
     }
-  }
+  };
 
   function checkAll(type) {
     if (type === 'weapons') {
@@ -48,14 +46,14 @@ function App() {
           isSelected: true}
       }))
     }
-  }
+  };
 
   function handleVisibility(key, value) {
     setVisibility(prevVisibility => ({
         ...prevVisibility,
         [key]: !value
       }))
-  }
+  };
   
   const weaponElements = weapons.map(item => (
     <Weapon 
@@ -67,7 +65,7 @@ function App() {
       isSelected={item.isSelected}
       selectWeapon={() => selectWeapon(item.id, 'weapon')}
     />
-  ))
+  ));
 
   const amazingWeaponElements = amazingWeapons.map(item => (
     <Weapon 
@@ -79,26 +77,20 @@ function App() {
       isSelected={item.isSelected}
       selectWeapon={() => selectWeapon(item.id, 'amazingWeapon')}
     />
-  ))
+  ));
 
     useEffect(() => {
       localStorage.setItem('mandervilleWeapons', JSON.stringify(weapons))
       localStorage.setItem('amazingMandervilleWeapons', JSON.stringify(amazingWeapons))
       localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
 
-      setMaterials(prevMaterials => {
-          return {
-          ...prevMaterials,
-          meteorites: (weaponsTruths.length) * 3
-        } 
-      })
-      setMaterials(prevMaterials => {
-          return {
-          ...prevMaterials,
-          chondrites: (amazingWeaponsTruths.length) * 3
-        } 
-      })
-    }, [weapons, amazingWeapons, visibility])
+      setMaterials(
+        {
+          meteorites: ((weaponsTruths.length) * 3),
+          chondrites: ((amazingWeaponsTruths.length) * 3)
+        }
+      )
+    }, [weapons, amazingWeapons, visibility]);
 
   return (
     <div className='main'>
