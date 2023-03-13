@@ -8,24 +8,24 @@ import Weapon from './components/Weapon';
 import WeaponsContainer from './components/WeaponsContainer';
 
 function App() {
-  const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('manderville')) || data);
-  const [amazingWeapons, setAmazingWeapons] = useState(JSON.parse(localStorage.getItem('amazingManderville')) || data.amazingManderville);
+  const [weapons, setWeapons] = useState(data);
+  // const [amazingWeapons, setAmazingWeapons] = useState(JSON.parse(localStorage.getItem('amazingManderville')) || data.amazingManderville);
   const [materials, setMaterials] = useState({meteorites: 57, chondrites: 57})
   const [visibility, setVisibility] = useState(JSON.parse(localStorage.getItem('sectionVisibility')) || {weapons: true, amazingWeapons: true})
-  
-  const weaponsTruths = weapons.filter((obj) => obj.wpnName === 'Manderville Kite Shield' ? null : !obj.isSelected);
-  const amazingWeaponsTruths = amazingWeapons.filter((obj) => obj.wpnName === 'Amazing Manderville Kite Shield' ? null : !obj.isSelected);
+  console.log(weapons)
+  // const weaponsTruths = weapons.manderville.filter((obj) => obj.wpnName === 'Manderville Kite Shield' ? null : !obj.isSelected);
+  // const amazingWeaponsTruths = weapons.amazingManderville.filter((obj) => obj.wpnName === 'Amazing Manderville Kite Shield' ? null : !obj.isSelected);
 
   function selectWeapon(id, type) {
     if (type === 'weapon') {
-      setWeapons(oldWeapons => oldWeapons.map(weapon => {
-        console.log(oldWeapons);
+      setWeapons(oldWeapons => oldWeapons.manderville.map(weapon => {
+        // console.log(oldWeapons);
         return weapon.id === id ?
           {...weapon, isSelected: !weapon.isSelected} :
           weapon
       }))
     } else if (type === 'amazingWeapon') {
-      setWeapons(oldWeapons => oldWeapons.map(weapon => {
+      setWeapons(oldWeapons => oldWeapons.amazingManderville.map(weapon => {
         return weapon.id === id ?
           {...weapon, isSelected: !weapon.isSelected} :
           weapon
@@ -35,13 +35,13 @@ function App() {
 
   function checkAll(type) {
     if (type === 'weapons') {
-      setWeapons(oldWeapons => oldWeapons.map(weapon => {
+      setWeapons(oldWeapons => oldWeapons.manderville.map(weapon => {
         return {
           ...weapon, 
           isSelected: true}
       }))
     } else if (type === 'amazingWeapons') {
-      setAmazingWeapons(oldWeapons => oldWeapons.map(weapon => {
+      setWeapons(oldWeapons => oldWeapons.amazingManderville.map(weapon => {
         return {
           ...weapon, 
           isSelected: true}
@@ -56,7 +56,7 @@ function App() {
       }))
   };
   
-  const weaponElements = weapons.map(item => (
+  const weaponElements = weapons.manderville.map(item => (
     <Weapon 
       key={item.id}
       id={item.id}
@@ -68,7 +68,7 @@ function App() {
     />
   ));
 
-  const amazingWeaponElements = amazingWeapons.map(item => (
+  const amazingWeaponElements = weapons.amazingManderville.map(item => (
     <Weapon 
       key={item.id}
       id={item.id}
@@ -85,19 +85,19 @@ function App() {
       // localStorage.setItem('amazingManderville', JSON.stringify(amazingWeapons))
       localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
       
-      setMaterials(
-        {
-          meteorites: ((weaponsTruths.length) * 3),
-          chondrites: ((amazingWeaponsTruths.length) * 3)
-        }
-      )
-    }, [weapons, amazingWeapons, visibility]);
+      // setMaterials(
+      //   {
+      //     meteorites: ((weaponsTruths.length) * 3),
+      //     chondrites: ((amazingWeaponsTruths.length) * 3)
+      //   }
+      // )
+    }, [weapons, visibility]);
 
   return (
     <div className='main'>
       <Header />
         <div  className='weapons-header' onClick={() => handleVisibility('weapons', visibility.weapons)}>
-          <p className='weapons-header--completed'>{19 - weaponsTruths.length}/19</p>  
+          {/* <p className='weapons-header--completed'>{19 - weaponsTruths.length}/19</p>   */}
           <h4>Manderville Weapons<span className='smaller-green'>iLvl 615 (Patch 6.25)</span></h4>
           {!visibility.weapons ? <ExpandMoreIcon sx={{fontSize: '40px'}} /> : <ExpandLessIcon sx={{fontSize: '40px'}} />}
         </div>
@@ -116,20 +116,20 @@ function App() {
         }
         
         <div className='weapons-header' onClick={() => handleVisibility('amazingWeapons', visibility.amazingWeapons)}>
-          <p className='weapons-header--completed'>{19 - amazingWeaponsTruths.length}/19</p>
+          {/* <p className='weapons-header--completed'>{19 - amazingWeaponsTruths.length}/19</p> */}
           <h4>Amazing Manderville Weapons<span className='smaller-green'>iLvl 630 (Patch 6.35)</span></h4>
           {!visibility.amazingWeapons ? <ExpandMoreIcon sx={{fontSize: '40px'}} /> : <ExpandLessIcon sx={{fontSize: '40px'}} />}
         </div>
         { visibility.amazingWeapons && 
           <WeaponsContainer 
-            weapons={amazingWeapons} 
+            weapons={weapons.amazingManderville} 
             selectWeapon={selectWeapon} 
             weaponType='amazingWeapon' 
             materials={materials.chondrites}
             materialName='Complementary Chondrites'
             icon='/icons/Complementary_Chondrite_Icon.png'
             checkAll={() => checkAll('amazingWeapons')}
-            uncheckAll={() => setAmazingWeapons(data.amazingManderville)}
+            uncheckAll={() => setWeapons(data.amazingManderville)}
             weaponElements={amazingWeaponElements}
           />
           }
