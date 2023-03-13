@@ -8,8 +8,8 @@ import Weapon from './components/Weapon';
 import WeaponsContainer from './components/WeaponsContainer';
 
 function App() {
-  const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('manderville')) || data.manderville);
-  const [amazingWeapons, setAmazingWeapons] = useState(JSON.parse(localStorage.getItem('amazingManderville')) || data.amazingManderville);
+  const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('mandervilleWeapons')) || data[0]);
+  const [amazingWeapons, setAmazingWeapons] = useState(JSON.parse(localStorage.getItem('amazingMandervilleWeapons')) || data[1]);
   const [materials, setMaterials] = useState({meteorites: 57, chondrites: 57})
   const [visibility, setVisibility] = useState(JSON.parse(localStorage.getItem('sectionVisibility')) || {weapons: true, amazingWeapons: true})
   
@@ -18,7 +18,7 @@ function App() {
 
   function selectWeapon(id, type) {
     if (type === 'weapon') {
-      setWeapons(oldWeapons => oldWeapons.map(weapon => {
+      setWeapons(oldWeapons => oldWeapons.manderville.map(weapon => {
         return weapon.id === id ?
           {...weapon, isSelected: !weapon.isSelected} :
           weapon
@@ -80,10 +80,10 @@ function App() {
   ));
 
     useEffect(() => {
-      localStorage.setItem('manderville', JSON.stringify(weapons))
-      localStorage.setItem('amazingManderville', JSON.stringify(amazingWeapons))
+      localStorage.setItem('mandervilleWeapons', JSON.stringify(weapons))
+      localStorage.setItem('amazingMandervilleWeapons', JSON.stringify(amazingWeapons))
       localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
-      
+
       setMaterials(
         {
           meteorites: ((weaponsTruths.length) * 3),
@@ -109,7 +109,7 @@ function App() {
             materialName='Manderium Meteorites'
             icon='/icons/Manderium_Meteorite_Icon.png'
             checkAll={() => checkAll('weapons')}
-            uncheckAll={() => setWeapons(data.manderville)}
+            uncheckAll={() => setWeapons(data[0])}
             weaponElements={weaponElements}
           />
         }
@@ -128,7 +128,7 @@ function App() {
             materialName='Complementary Chondrites'
             icon='/icons/Complementary_Chondrite_Icon.png'
             checkAll={() => checkAll('amazingWeapons')}
-            uncheckAll={() => setAmazingWeapons(data.amazingManderville)}
+            uncheckAll={() => setAmazingWeapons(data[1])}
             weaponElements={amazingWeaponElements}
           />
           }

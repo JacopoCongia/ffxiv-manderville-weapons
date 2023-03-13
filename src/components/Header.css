@@ -9,7 +9,7 @@ header {
     align-items: center;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 670px) {
     header {
         display: flex;
         padding: 25px 0;

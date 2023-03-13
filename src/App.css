@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6, p {
     cursor: pointer;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 625px) {
     .weapons-header {
     font-size: 3.6vw;
     }
