@@ -8,7 +8,7 @@ import Weapon from './components/Weapon';
 import WeaponsContainer from './components/WeaponsContainer';
 
 function App() {
-  const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('manderville')) || data.manderville);
+  const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('manderville')) || data);
   const [amazingWeapons, setAmazingWeapons] = useState(JSON.parse(localStorage.getItem('amazingManderville')) || data.amazingManderville);
   const [materials, setMaterials] = useState({meteorites: 57, chondrites: 57})
   const [visibility, setVisibility] = useState(JSON.parse(localStorage.getItem('sectionVisibility')) || {weapons: true, amazingWeapons: true})
@@ -19,12 +19,13 @@ function App() {
   function selectWeapon(id, type) {
     if (type === 'weapon') {
       setWeapons(oldWeapons => oldWeapons.map(weapon => {
+        console.log(oldWeapons);
         return weapon.id === id ?
           {...weapon, isSelected: !weapon.isSelected} :
           weapon
       }))
     } else if (type === 'amazingWeapon') {
-      setAmazingWeapons(oldWeapons => oldWeapons.map(weapon => {
+      setWeapons(oldWeapons => oldWeapons.map(weapon => {
         return weapon.id === id ?
           {...weapon, isSelected: !weapon.isSelected} :
           weapon
@@ -80,8 +81,8 @@ function App() {
   ));
 
     useEffect(() => {
-      localStorage.setItem('manderville', JSON.stringify(weapons))
-      localStorage.setItem('amazingManderville', JSON.stringify(amazingWeapons))
+      // localStorage.setItem('manderville', JSON.stringify(weapons))
+      // localStorage.setItem('amazingManderville', JSON.stringify(amazingWeapons))
       localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
       
       setMaterials(
