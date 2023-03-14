@@ -1,24 +1,23 @@
 import React from 'react';
-import './Weapon.css'
 
-function Weapon({ id, jobName, weaponName, icon, isSelected, selectWeapon}) {
+function Weapon(props) {
     const styles = {
-        opacity: isSelected ? "25%" : "100%"
+        opacity: props.isSelected ? "25%" : "100%"
     }
     
     return (
             <div className='tooltip'>
-                <span className='tooltiptext'>{weaponName}</span>
+                <span className='tooltiptext'>{props.weaponName}</span>
                 <div 
-                    onClick={selectWeapon} 
+                    onClick={props.selectWeapon} 
                     style={styles} 
                     className='weapon' 
-                    id={id}>
+                    id={props.id}>
                     <img 
                         className="weapon--icon" 
-                        alt={weaponName} 
-                        src={icon} /> 
-                    {jobName}
+                        alt={props.weaponName} 
+                        src={props.icon} /> 
+                    {props.jobName}
                 </div>
             </div>
     )

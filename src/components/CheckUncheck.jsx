@@ -1,11 +1,10 @@
 import React from 'react';
-import './CheckUncheck.css';
 
-function CheckUncheck({ handleClickCheck, handleClickUncheck }) {
+function CheckUncheck(props) {
     return (
-        <div>
-            <button className='check-all' onClick={handleClickCheck}>Check All</button>
-            <button className='uncheck-all' onClick={handleClickUncheck}>Uncheck All</button>
+        <div className='check-uncheck-container'>
+            <button className='check-all' onClick={props.checkAll}>Check All</button>
+            <button className='uncheck-all' onClick={props.uncheckAll}>Uncheck All</button>
         </div>
     )
 }
