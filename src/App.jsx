@@ -81,9 +81,9 @@ function App() {
   ));
 
     useEffect(() => {
-      // localStorage.setItem('manderville', JSON.stringify(weapons))
-      // localStorage.setItem('amazingManderville', JSON.stringify(amazingWeapons))
-      // localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
+      localStorage.setItem('manderville', JSON.stringify(weapons))
+      localStorage.setItem('amazingManderville', JSON.stringify(amazingWeapons))
+      localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
 
       setMaterials(
         {
