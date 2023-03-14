@@ -83,7 +83,7 @@ function App() {
       localStorage.setItem('manderville', JSON.stringify(weapons))
       localStorage.setItem('amazingManderville', JSON.stringify(amazingWeapons))
       localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
-      
+
       setMaterials(
         {
           meteorites: ((weaponsTruths.length) * 3),

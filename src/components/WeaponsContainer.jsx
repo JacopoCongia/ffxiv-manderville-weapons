@@ -1,7 +1,6 @@
 import React from 'react';
-import ReqMaterials from './ReqMaterials';
-import CheckButton from './CheckButton';
-import UncheckButton from './UncheckButton';
+import Materials from './Materials';
+import CheckUncheck from './CheckUncheck';
 
 function WeaponsContainer(props) {
     return (
@@ -9,13 +8,15 @@ function WeaponsContainer(props) {
             <div className='weapon-elements'>
             {props.weaponElements}
             </div>
-            <ReqMaterials 
+            <Materials 
                 materials={props.materials} 
                 materialName={props.materialName}
                 icon={props.icon}
             />
-            <CheckButton handleClick={props.checkAll}/>
-            <UncheckButton handleClick={props.uncheckAll}/>
+            <CheckUncheck 
+                handleClickUncheck={props.uncheckAll} 
+                handleClickCheck={props.checkAll}
+            />
         </div>
     )
 }

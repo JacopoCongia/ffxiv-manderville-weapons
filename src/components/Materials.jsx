@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ReqMaterials(props) {
+function Materials(props) {
     return (
         <div className='materials-container'>
             <p className='astronomy'>
@@ -23,4 +23,4 @@ function ReqMaterials(props) {
     )
 }
 
-export default ReqMaterials;
+export default Materials;
