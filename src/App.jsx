@@ -39,29 +39,19 @@ function App() {
 
   function checkAll(type) {
     if (type === 'weapons') {
-      setWeapons(oldWeapons => (
-        {
+      setWeapons(oldWeapons => ({
+          ...oldWeapons,
           manderville: oldWeapons.manderville.map(weapon => (
             {
             ...weapon, 
             isSelected: true
             }
-          )),
-          amazingManderville: oldWeapons.amazingManderville.map(weapon => (
-            {
-              ...weapon
-            }
           ))
         }
       ))
     } else if (type === 'amazingWeapons') {
-      setWeapons(oldWeapons => (
-        {
-          manderville: oldWeapons.manderville.map(weapon => (
-            {
-            ...weapon
-            }
-          )),
+      setWeapons(oldWeapons => ({
+          ...oldWeapons,
           amazingManderville: oldWeapons.amazingManderville.map(weapon => (
             {
               ...weapon,
