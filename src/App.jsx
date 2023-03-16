@@ -9,8 +9,7 @@ import Materials from './components/Materials';
 import CheckUncheck from './components/CheckUncheck';
 
 function App() {
-  const [weapons, setWeapons] = useState(data);
-  // const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('weapons')) || data);
+  const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('weapons')) || data);
   const [materials, setMaterials] = useState({meteorites: 57, chondrites: 57})
   const [visibility, setVisibility] = useState(JSON.parse(localStorage.getItem('sectionVisibility')) || {weapons: true, amazingWeapons: true})
   
@@ -27,56 +26,32 @@ function App() {
           } :
           weapon
         }),
-      ...oldWeapons
+      amazingManderville: oldWeapons.amazingManderville.map(weapon => {
+        return weapon.wpnName === name ?
+        {
+          ...weapon, 
+          isSelected: !weapon.isSelected
+        } :
+        weapon
+      })
     }))
   };
-  
-  // function selectWeapon(name) {
-  //   setWeapons(oldWeapons => ({
-  //     manderville: oldWeapons.manderville.map(weapon => {
-  //       return weapon.wpnName === name ?
-  //         {
-  //           ...weapon, 
-  //           isSelected: !weapon.isSelected
-  //         } :
-  //         weapon
-  //       }),
-  //     amazingManderville: oldWeapons.amazingManderville.map(weapon => {
-  //       return weapon.wpnName === name ?
-  //       {
-  //         ...weapon, 
-  //         isSelected: !weapon.isSelected
-  //       } :
-  //       weapon
-  //     })
-  //   }))
-  // };
 
   function checkAll(type) {
     if (type === 'weapons') {
-      setWeapons(oldWeapons => (
-        {
+      setWeapons(oldWeapons => ({
+          ...oldWeapons,
           manderville: oldWeapons.manderville.map(weapon => (
             {
             ...weapon, 
             isSelected: true
             }
-          )),
-          amazingManderville: oldWeapons.amazingManderville.map(weapon => (
-            {
-              ...weapon
-            }
           ))
         }
       ))
     } else if (type === 'amazingWeapons') {
-      setWeapons(oldWeapons => (
-        {
-          manderville: oldWeapons.manderville.map(weapon => (
-            {
-            ...weapon
-            }
-          )),
+      setWeapons(oldWeapons => ({
+          ...oldWeapons,
           amazingManderville: oldWeapons.amazingManderville.map(weapon => (
             {
               ...weapon,
@@ -154,8 +129,8 @@ function App() {
   ));
 
     useEffect(() => {
-      // localStorage.setItem('weapons', JSON.stringify(weapons))
-      // localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
+      localStorage.setItem('weapons', JSON.stringify(weapons))
+      localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
 
       setMaterials(
         {
