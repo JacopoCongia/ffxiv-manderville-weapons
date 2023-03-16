@@ -19,13 +19,13 @@ function App() {
   function selectWeapon(name) {
     setWeapons(oldWeapons => ({
       manderville: oldWeapons.manderville.map(weapon => {
-      return weapon.wpnName === name ?
-        {
-          ...weapon, 
-          isSelected: !weapon.isSelected
-        } :
-        weapon
-      }),
+        return weapon.wpnName === name ?
+          {
+            ...weapon, 
+            isSelected: !weapon.isSelected
+          } :
+          weapon
+        }),
       amazingManderville: oldWeapons.amazingManderville.map(weapon => {
         return weapon.wpnName === name ?
         {
@@ -171,7 +171,7 @@ function App() {
           <Materials 
             materials={materials.meteorites} 
             materialName='Manderium Meteorites'
-            icon='/icons/Manderium_Meteorite_Icon.png'
+            icon='/icons/endwalker-icons/materials/Manderium_Meteorite_Icon.png'
           />
           <CheckUncheck 
             checkAll={() => checkAll('weapons')}
@@ -197,7 +197,7 @@ function App() {
             <Materials 
               materials={materials.chondrites} 
               materialName='Complementary Chondrites'
-              icon='/icons/Complementary_Chondrite_Icon.png'
+              icon='/icons/endwalker-icons/materials/Complementary_Chondrite_Icon.png'
             />
             <CheckUncheck 
               checkAll={() => checkAll('amazingWeapons')}
