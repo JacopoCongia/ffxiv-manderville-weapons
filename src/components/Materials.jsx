@@ -1,23 +1,23 @@
 import React from 'react';
 
-function Materials(props) {
+function Materials({ tomestones, materials, materialName, icon }) {
     return (
         <div className='materials-container'>
             <p className='astronomy'>
             <img 
                 className='astronomy-icon'
-                alt='Allagan Tomestone of Astronomy' 
-                src='/icons/Allagan_Tomestone_of_Astronomy_Icon.png'
+                alt={tomestones[0].name}
+                src={tomestones[0].icon}
             />
-            Allagan Tomestones of Astronomy: {props.materials / 3 * 1500}
+            {tomestones[0].name}: {materials / 3 * 1500}
             </p>
             <p className='primary-materials'>
                 <img 
                     className='material-icon'
-                    alt={props.materialName}
-                    src={props.icon}
+                    alt={materialName}
+                    src={icon}
                 />
-            {props.materialName}: {props.materials}
+            {materialName}: {materials}
             </p>
           </div>
     )

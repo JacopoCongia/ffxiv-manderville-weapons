@@ -9,8 +9,8 @@ import Materials from './components/Materials';
 import CheckUncheck from './components/CheckUncheck';
 
 function App() {
-  const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('weapons')) || data);
-  const [materials, setMaterials] = useState({meteorites: 57, chondrites: 57})
+  const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('data')) || data);
+  const [materials, setMaterials] = useState({meteorites: 0, chondrites: 0})
   const [visibility, setVisibility] = useState(JSON.parse(localStorage.getItem('sectionVisibility')) || {weapons: true, amazingWeapons: true})
   
   const weaponsTruths = weapons.manderville.filter((obj) => obj.wpnName === 'Manderville Kite Shield' ? null : !obj.isSelected);
@@ -18,6 +18,7 @@ function App() {
 
   function selectWeapon(name) {
     setWeapons(oldWeapons => ({
+      ...oldWeapons,
       manderville: oldWeapons.manderville.map(weapon => {
         return weapon.wpnName === name ?
           {
@@ -37,65 +38,23 @@ function App() {
     }))
   };
 
-  function checkAll(type) {
-    if (type === 'weapons') {
-      setWeapons(oldWeapons => ({
-          ...oldWeapons,
-          manderville: oldWeapons.manderville.map(weapon => (
-            {
-            ...weapon, 
-            isSelected: true
-            }
-          ))
-        }
-      ))
-    } else if (type === 'amazingWeapons') {
-      setWeapons(oldWeapons => ({
-          ...oldWeapons,
-          amazingManderville: oldWeapons.amazingManderville.map(weapon => (
-            {
-              ...weapon,
-              isSelected: true
-            }))
-        }
-      ))
+  function checkAll(allChecked, type) {
+    setWeapons(
+      {
+        ...weapons, 
+        [type]: allChecked
       }
-    };
-  
-  function uncheckAll(type) {
-    if (type === 'weapons') {
-      setWeapons(oldWeapons => (
-        {
-          manderville: oldWeapons.manderville.map(weapon => (
-            {
-            ...weapon, 
-            isSelected: false
-            }
-          )),
-          amazingManderville: oldWeapons.amazingManderville.map(weapon => (
-            {
-              ...weapon
-            }
-          ))
-        }
-      ))
-    } else if (type === 'amazingWeapons') {
-      setWeapons(oldWeapons => (
-        {
-          manderville: oldWeapons.manderville.map(weapon => (
-            {
-            ...weapon
-            }
-          )),
-          amazingManderville: oldWeapons.amazingManderville.map(weapon => (
-            {
-              ...weapon,
-              isSelected: false
-            }))
-        }
-      ))
+    );
+  };
+
+  function uncheckAll(allUnchecked, type) {
+    setWeapons(
+      {
+        ...weapons, 
+        [type]: allUnchecked
       }
-    };
+    );
+  };
   
   function handleVisibility(key, value) {
     setVisibility(prevVisibility => ({
@@ -104,41 +63,17 @@ function App() {
       }))
   };
   
-  const weaponElements = weapons.manderville.map(item => (
-    <Weapon 
-      key={item.id}
-      id={item.id}
-      jobName={item.wpnJob}
-      weaponName={item.wpnName}
-      icon={item.icon}
-      isSelected={item.isSelected}
-      selectWeapon={() => selectWeapon(item.wpnName)}
-    />
-  ));
+  useEffect(() => {
+    // localStorage.setItem('data', JSON.stringify(weapons))
+    // localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
 
-  const amazingWeaponElements = weapons.amazingManderville.map(item => (
-    <Weapon 
-      key={item.id}
-      id={item.id}
-      jobName={item.wpnJob}
-      weaponName={item.wpnName}
-      icon={item.icon}
-      isSelected={item.isSelected}
-      selectWeapon={() => selectWeapon(item.wpnName)}
-    />
-  ));
-
-    useEffect(() => {
-      localStorage.setItem('weapons', JSON.stringify(weapons))
-      localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
-
-      setMaterials(
-        {
-          meteorites: ((weaponsTruths.length) * 3),
-          chondrites: ((amazingWeaponsTruths.length) * 3)
-        }
-      )
-    }, [weapons, visibility]);
+    setMaterials(
+      {
+        meteorites: ((weaponsTruths.length) * 3),
+        chondrites: ((amazingWeaponsTruths.length) * 3)
+      }
+    )
+  }, [weapons, visibility]);
 
   return (
     <div>
@@ -147,25 +82,26 @@ function App() {
           weaponsTruths={weaponsTruths.length}
           handleVisibility={() => handleVisibility('weapons', visibility.weapons)}
           visibility={visibility.weapons}
-          name={'Manderville Weapons'}
-          patchInfo={'iLvl 615 (Patch 6.25)'}
+          name='Manderville Weapons'
+          patchInfo='iLvl 615 (Patch 6.25)'
         />
         { visibility.weapons && 
           <div className='main'>
           <WeaponsContainer 
             weapons={weapons.manderville} 
             selectWeapon={selectWeapon} 
-            weaponType='weapon' 
-            weaponElements={weaponElements}
           />
           <Materials 
             materials={materials.meteorites} 
-            materialName='Manderium Meteorites'
-            icon='/icons/endwalker-icons/materials/Manderium_Meteorite_Icon.png'
+            materialName={data.materials[0].name}
+            icon={data.materials[0].icon}
+            tomestones={data.tomestones}
           />
           <CheckUncheck 
-            checkAll={() => checkAll('weapons')}
-            uncheckAll={() => uncheckAll('weapons')}
+            weapons={weapons.manderville}
+            type='manderville'
+            checkAll={checkAll}
+            uncheckAll={uncheckAll}
           />
           </div>
         }
@@ -173,25 +109,26 @@ function App() {
           weaponsTruths={amazingWeaponsTruths.length}
           handleVisibility={() => handleVisibility('amazingWeapons', visibility.amazingWeapons)}
           visibility={visibility.amazingWeapons}
-          name={'Amazing Manderville Weapons'}
-          patchInfo={'iLvl 630 (Patch 6.35)'}
+          name='Amazing Manderville Weapons'
+          patchInfo='iLvl 630 (Patch 6.35)'
         />
         { visibility.amazingWeapons && 
           <div className='main'>
             <WeaponsContainer 
               weapons={weapons.amazingManderville} 
               selectWeapon={selectWeapon} 
-              weaponType='amazingWeapon' 
-              weaponElements={amazingWeaponElements}
             />
             <Materials 
               materials={materials.chondrites} 
-              materialName='Complementary Chondrites'
-              icon='/icons/endwalker-icons/materials/Complementary_Chondrite_Icon.png'
+              materialName={data.materials[1].name}
+              icon={data.materials[1].icon}
+              tomestones={data.tomestones}
             />
             <CheckUncheck 
-              checkAll={() => checkAll('amazingWeapons')}
-              uncheckAll={() => uncheckAll('amazingWeapons')}
+              weapons={weapons.amazingManderville}
+              type='amazingManderville'
+              checkAll={checkAll}
+              uncheckAll={uncheckAll}
             />
           </div>
           }
