@@ -16,7 +16,8 @@ function Weapon(props) {
                     <img 
                         className="weapon--icon" 
                         alt={props.weaponName} 
-                        src={props.icon} /> 
+                        src={props.icon} 
+                    /> 
                     {props.jobName}
                 </div>
             </div>

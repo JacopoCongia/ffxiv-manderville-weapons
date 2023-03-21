@@ -1,4 +1,25 @@
 const data = {
+    tomestones: [
+        {
+            id: 0,
+            name: 'Allagan Tomestones of Astronomy',
+            icon: '/icons/Allagan_Tomestone_of_Astronomy_Icon.png'
+        }
+    ],
+    materials: [
+        {
+            id: 0,
+            name: 'Manderium Meteorites',
+            icon: '/icons/endwalker-icons/materials/Manderium_Meteorite_Icon.png',
+            quantity: 57
+        },
+        {
+            id: 1,
+            name: 'Complementary Chondrites',
+            icon: '/icons/endwalker-icons/materials/Complementary_Chondrite_Icon.png',
+            quantity: 57
+        }
+    ],
     manderville: [
         {
             id: 0,
