@@ -15,25 +15,17 @@ function App() {
   const weaponsTruths = weapons.manderville.filter((obj) => obj.wpnName === 'Manderville Kite Shield' ? null : !obj.isSelected);
   const amazingWeaponsTruths = weapons.amazingManderville.filter((obj) => obj.wpnName === 'Amazing Manderville Kite Shield' ? null : !obj.isSelected);
 
-  function selectWeapon(name) {
+  function selectWeapon(name, key, wpnCategory) {
     setWeapons(oldWeapons => ({
       ...oldWeapons,
-      manderville: oldWeapons.manderville.map(weapon => {
+      [key]: wpnCategory.map(weapon => {
         return weapon.wpnName === name ?
           {
             ...weapon, 
             isSelected: !weapon.isSelected
           } :
           weapon
-        }),
-      amazingManderville: oldWeapons.amazingManderville.map(weapon => {
-        return weapon.wpnName === name ?
-        {
-          ...weapon, 
-          isSelected: !weapon.isSelected
-        } :
-        weapon
-      })
+        })
     }))
   };
 
@@ -88,7 +80,8 @@ function App() {
           <div className='main'>
             <WeaponsContainer 
               weapons={weapons.manderville} 
-              selectWeapon={selectWeapon} 
+              type='manderville'
+              selectWeapon={selectWeapon}
             />
             <Materials 
               materials={materials.meteorites} 
@@ -114,7 +107,8 @@ function App() {
         { visibility.amazingWeapons && 
           <div className='main'>
             <WeaponsContainer 
-              weapons={weapons.amazingManderville} 
+              weapons={weapons.amazingManderville}
+              type='amazingManderville'
               selectWeapon={selectWeapon} 
             />
             <Materials 

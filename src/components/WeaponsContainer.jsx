@@ -1,16 +1,14 @@
 import React from 'react';
 import Weapon from './Weapon';
 
-function WeaponsContainer({ weapons, selectWeapon }) {
+function WeaponsContainer({ weapons, selectWeapon, type }) {
     const weaponElements = weapons.map(weapon => (
         <Weapon 
           key={weapon.id}
-          id={weapon.id}
-          jobName={weapon.wpnJob}
-          weaponName={weapon.wpnName}
-          icon={weapon.icon}
-          isSelected={weapon.isSelected}
-          selectWeapon={() => selectWeapon(weapon.wpnName)}
+          weapon={weapon}
+          wpnCategory={weapons}
+          selectWeapon={selectWeapon}
+          type={type}
         />
       ));
     
