@@ -86,22 +86,22 @@ function App() {
         />
         { visibility.weapons && 
           <div className='main'>
-          <WeaponsContainer 
-            weapons={weapons.manderville} 
-            selectWeapon={selectWeapon} 
-          />
-          <Materials 
-            materials={materials.meteorites} 
-            materialName={data.materials[0].name}
-            icon={data.materials[0].icon}
-            tomestones={data.tomestones}
-          />
-          <CheckUncheck 
-            weapons={weapons.manderville}
-            type='manderville'
-            checkAll={checkAll}
-            uncheckAll={uncheckAll}
-          />
+            <WeaponsContainer 
+              weapons={weapons.manderville} 
+              selectWeapon={selectWeapon} 
+            />
+            <Materials 
+              materials={materials.meteorites} 
+              materialName={data.materials[0].name}
+              icon={data.materials[0].icon}
+              tomestones={data.tomestones}
+            />
+            <CheckUncheck 
+              weapons={weapons.manderville}
+              type='manderville'
+              checkAll={checkAll}
+              uncheckAll={uncheckAll}
+            />
           </div>
         }
         <WeaponsHeader 
