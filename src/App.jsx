@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import data from './data';
 import Header from './components/Header';
-import Weapon from './components/Weapon';
 import WeaponsHeader from './components/WeaponsHeader';
 import WeaponsContainer from './components/WeaponsContainer';
 import Materials from './components/Materials';
@@ -64,8 +63,8 @@ function App() {
   };
   
   useEffect(() => {
-    // localStorage.setItem('data', JSON.stringify(weapons))
-    // localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
+    localStorage.setItem('data', JSON.stringify(weapons))
+    localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
 
     setMaterials(
       {
