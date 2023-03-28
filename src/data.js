@@ -11,13 +11,17 @@ const data = {
             id: 0,
             name: 'Manderium Meteorites',
             icon: '/icons/endwalker-icons/materials/Manderium_Meteorite_Icon.png',
-            quantity: 57
+            reqTotal: 57,
+            reqPerWeapon: 3,
+            type: 'manderville'            
         },
         {
             id: 1,
             name: 'Complementary Chondrites',
             icon: '/icons/endwalker-icons/materials/Complementary_Chondrite_Icon.png',
-            quantity: 57
+            reqTotal: 57,
+            reqPerWeapon: 3,
+            type: 'amazingManderville'
         }
     ],
     manderville: [

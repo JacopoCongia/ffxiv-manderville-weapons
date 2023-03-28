@@ -4,16 +4,15 @@ import data from './data';
 import Header from './components/Header';
 import WeaponsHeader from './components/WeaponsHeader';
 import WeaponsContainer from './components/WeaponsContainer';
-import Materials from './components/Materials';
+import MaterialsContainer from './components/MaterialsContainer';
 import CheckUncheck from './components/CheckUncheck';
 
 function App() {
   const [weapons, setWeapons] = useState(JSON.parse(localStorage.getItem('data')) || data);
-  const [materials, setMaterials] = useState({meteorites: 0, chondrites: 0})
   const [visibility, setVisibility] = useState(JSON.parse(localStorage.getItem('sectionVisibility')) || {weapons: true, amazingWeapons: true})
   
-  const weaponsTruths = weapons.manderville.filter((obj) => obj.wpnName === 'Manderville Kite Shield' ? null : !obj.isSelected);
-  const amazingWeaponsTruths = weapons.amazingManderville.filter((obj) => obj.wpnName === 'Amazing Manderville Kite Shield' ? null : !obj.isSelected);
+  const weaponsTruths = weapons.manderville.filter((weapon) => weapon.wpnName === 'Manderville Kite Shield' ? null : !weapon.isSelected);
+  const amazingWeaponsTruths = weapons.amazingManderville.filter((weapon) => weapon.wpnName === 'Amazing Manderville Kite Shield' ? null : !weapon.isSelected);
 
   function selectWeapon(name, key, wpnCategory) {
     setWeapons(oldWeapons => ({
@@ -58,12 +57,6 @@ function App() {
     localStorage.setItem('data', JSON.stringify(weapons))
     localStorage.setItem('sectionVisibility', JSON.stringify(visibility))
 
-    setMaterials(
-      {
-        meteorites: ((weaponsTruths.length) * 3),
-        chondrites: ((amazingWeaponsTruths.length) * 3)
-      }
-    )
   }, [weapons, visibility]);
 
   return (
@@ -83,11 +76,11 @@ function App() {
               type='manderville'
               selectWeapon={selectWeapon}
             />
-            <Materials 
-              materials={materials.meteorites} 
-              materialName={data.materials[0].name}
-              icon={data.materials[0].icon}
-              tomestones={data.tomestones}
+            <MaterialsContainer 
+              materials={data.materials}
+              type='manderville'
+              tomestones={data.tomestones[0]}
+              weaponsTruths={weaponsTruths}
             />
             <CheckUncheck 
               weapons={weapons.manderville}
@@ -111,11 +104,11 @@ function App() {
               type='amazingManderville'
               selectWeapon={selectWeapon} 
             />
-            <Materials 
-              materials={materials.chondrites} 
-              materialName={data.materials[1].name}
-              icon={data.materials[1].icon}
-              tomestones={data.tomestones}
+            <MaterialsContainer 
+              materials={data.materials}
+              type='amazingManderville'
+              tomestones={data.tomestones[0]}
+              weaponsTruths={amazingWeaponsTruths}
             />
             <CheckUncheck 
               weapons={weapons.amazingManderville}

@@ -179,12 +179,12 @@ header {
 
 /* Materials */
 
-.materials-container > p {
+.primary-materials, .tomestone {
     display: flex;
     align-items: center;
 }
 
-.astronomy-icon {
+.tomestone-icon {
     max-width: 20px;
     width: 100%;
     margin-right: 10px;
@@ -196,7 +196,7 @@ header {
     margin-right: 10px;
 }
 
-.astronomy {
+.tomestone {
     margin-bottom: 15px;
 }
 
