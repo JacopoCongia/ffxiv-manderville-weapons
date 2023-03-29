@@ -1,0 +1,242 @@
+* {
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    background-color: #272727;
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+
+header {
+    display: flex;
+    padding: 25px 0;
+    background-color: #009468;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0px 3px 8px #0000001a;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 725px) {
+    header {
+        font-size: 2.5vw;
+    }
+}
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    padding: 35px;
+    text-align: center;
+}
+
+.materials-container {
+    margin-top: 35px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 480px) {
+    .materials-container {
+        font-size: 2.6vw;
+    }
+}
+
+
+
+/* WeaponsHeader */
+
+.smaller-green {
+    font-size: 1.6rem;
+    color: #00ff88;
+    display: block;
+    margin-top: 5px;
+}
+
+.weapons-header {
+    display: flex;
+    padding: 15px 25px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 500;
+    background-color: #004483;
+    box-shadow: 0px 3px 8px #0000001a;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.weapons-header:hover {
+    opacity: 85%;
+}
+
+.weapons-header > h4 {
+    margin-right: auto;
+}
+
+.weapons-header--completed {
+    font-size: 2rem;
+    letter-spacing: .1rem;
+    font-weight: 600;
+    margin-right: auto;
+}
+
+@media (max-width: 625px) {
+    .weapons-header {
+    font-size: 3.6vw;
+    }
+    .smaller-green {
+       font-size: 2.4vw
+    }
+    .weapons-header--completed {
+        font-size: 2.8vw;
+    }
+}
+
+/* WeaponsContainer */
+
+.weapon-elements {
+    display: grid;
+    grid-template: auto auto / repeat(5, 80px);
+    justify-items: center;
+    gap: 20px 30px;
+    font-size: 1.4rem;
+    padding: 0 25px;
+}
+
+@media (max-width: 600px) {
+    .weapon-elements {
+        grid-template: auto auto / repeat(4, 80px);
+    }
+}
+
+@media (max-width: 480px) {
+    .weapon-elements {
+        grid-template: auto auto / repeat(3, 80px);
+    }
+}
+
+/* Weapon */
+
+.weapon {
+    cursor: pointer;
+    text-align: center;
+}
+
+.weapon:hover {
+    color: lightgrey;
+}
+
+.weapon--icon {
+    width: 80px;
+    height: 80px;
+}
+
+/* Tooltip functionality showing each weapon's name */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    width: 120px;
+    opacity: 85%;
+    background-color: #363636;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    bottom: 105%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* Materials */
+
+.primary-materials, .tomestone {
+    display: flex;
+    align-items: center;
+}
+
+.tomestone-icon {
+    max-width: 20px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.material-icon {
+    max-width: 20px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.tomestone {
+    margin-bottom: 15px;
+}
+
+/* CheckUncheck */
+
+.check-uncheck-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.check-all {
+    width: 200px;
+    height: 40px;
+    background-color: #009468;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.uncheck-all {
+    width: 200px;
+    height: 40px;
+    background-color: #bb4e46;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 85%;
+}
+
+@media (max-width: 670px) {
+    .check-uncheck-container {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+}
