@@ -1,6 +1,5 @@
 import React from "react";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { GoChevronDown, GoChevronUp } from "react-icons/go";
 
 function WeaponsHeader(props) {
   return (
@@ -16,9 +15,9 @@ function WeaponsHeader(props) {
         </span>
       </h4>
       {!props.visibility ? (
-        <ExpandMoreIcon sx={{ fontSize: "40px" }} />
+        <GoChevronDown className="text-2xl sm:text-4xl" />
       ) : (
-        <ExpandLessIcon sx={{ fontSize: "40px" }} />
+        <GoChevronUp className="text-2xl sm:text-4xl" />
       )}
     </div>
   );
